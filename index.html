@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Art for Everyone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: 'Bochan-Serif';
+            src: url(./fonts/Bochan-Serif.woff) format('truetype');  
+        }
+
+        .scrolling-section,
+        .section-two {
+            margin-top: 50px; 
+            margin-bottom: 50px;
+        }
+        .middle-section{
+            margin-top: 80px;
+            margin-bottom: 10px;
+            padding: 70px;
+        }
+          
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #F95700;
+            color: #333;
+            padding-top:80px;
+        }
+
+        /* 고정 헤더 */
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            background-color: #ffffff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items:last baseline;
+        }
+
+        .title{
+            margin-top: 10px;
+            margin-left: 10px;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+        }
+        
+
+        h1 {
+            color: #F95700;
+            font-size: 2em;
+            line-height: 120%;
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 1.25em;
+            line-height: 120%;
+            padding: 3px;
+        }
+
+        p {
+            text-align: center;
+            line-height: 150%;
+        }
+
+        nav ul {
+            list-style: none;
+            margin-top: 10px;
+            display:flex;
+            justify-content: flex-end;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #F95700;
+        }
+
+        nav ul li a:hover {
+            color: black;
+            list-style: underline;
+        }
+
+        /* main */
+        main {
+            padding: 20px;
+        }
+
+        /* footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: black;
+            color: #F95700;
+            font-size: 20px;
+        }
+
+        .scrolling-section {
+            height: 60vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding-top: 10px;
+        }
+
+        .scrolling-section h2 {
+            font-size: 3em;
+        }
+
+        .scrolling-section p {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        /* 섹션3 나누기 */
+        .section-two {
+            display: flex;
+            height: 70vh;
+            padding: 20px;
+        }
+
+        .section-two .box {
+            flex: 1;
+            margin: 5px;
+            padding: 20px;
+            background-color: #f2f2f2;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            color: #F95700;
+            position: relative;
+            text-align: center;
+        }
+
+        .section-two .box:hover {
+            background-color: black;
+            color: #F95700;
+        }
+
+        .section-two .box h2{
+            font-size: 2em;
+            padding:50px;
+            color:#F95700;
+        } 
+        .section-two .box p {
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.5s ease;
+            font-family: 'Bochan-Serif';
+            color: #F95700;
+            position: absolute;
+            top: 45%;
+            transform: translate(0,50%);
+            text-align: center;
+            width: 100%;
+            margin: 0;
+        }
+        
+        .section-two .box:hover p {
+            opacity: 1;
+            transform: translateY(0);
+            color: #F95700;
+        }
+
+        .additional-page {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #f9f9f9;
+            opacity: 0;
+            transform: translateY(-50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+    </style>
+</head>
+<body>
+    <header class="sticky">
+        <div class="title">
+        <h1>널 위한 문화예술</h1>
+        <h2 style="color:#F95700">Art for Everyone</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Artist</a></li>
+                <li><a href="#">Art Digger</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="scrolling-section">
+            <div>
+                <h2 style="font-size: 5.5em; font-family: 'Bochan-Serif'">Art for Everyone</h2>
+                <p>예술이 어렵지만 좋아하고, 더 알고 싶은 당신을 위한 공간</p>
+            </div>
+        </section>
+
+        <section class="middle-section">
+            <h1 style="color: #ffffff; font-family: 'Bochan-Serif'">About</h1></br>
+            <h2 style="font-size: 25px;">널 위한 문화예술, Art for Everyone</h2></br>
+            <p style="color:#ffffff; line-height: 180%; text-align:justify;">
+                예술의 영역은 광범위합니다. 자신의 관심사를 창의적으로, 개성 있게 표현하는 행위는 모두 예술이라고 할 수 있겠죠.</br>
+                그러나 현대 예술은 조금 어렵습니다. 난해하기도 하고, 이해를 잘 못하겠기도 하고,</br>
+                그렇다고 예술을 잘 아는 것도 아니고, 작품을 보고 무엇을 느끼라는 건지도, 느껴지지도 않는 경험을 합니다. </br>
+                그러다 보니 현대 예술은 벽이 높고 어려운 존재가 되고, 점점 예술에서 멀어지게 되는 경우가 많죠. </br>
+                예술은 어느샌가 "그들만의 세상"이 된 느낌이 들기도 합니다. </br>
+                예술이 궁금하고 잘 알고 싶지만, 예술에 이러한 벽을 느끼거나 난해함을 느껴 다가가기 힘든 분들에게 </br>
+                널 위한 문화예술은 예술을 보고 느끼는 의문, 감정, 호기심 등 다양한 얘기를 자유롭게 나눌 수 있는 공간을 제공합니다.
+            </p>
+
+        <!-- 2개 박스 -->
+        <section class="section-two">
+            <!-- Left box -->
+            <div class="box" onclick="window.location.href='https://www.w3schools.com/w3css/tryw3css_templates_dark_portfolio.htm'">
+                <h2 style="text-align: center;">예술가 | Artist</h2>
+                <p> 예술가이신가요? </br>
+                    당신의 작품을 보여주고, 공간을 탐색해 보세요! </br> </br>
+                    <span style="font-size: 17px;"> Are you artist?<br>Show your art and find art space!</span></p>
+            </div>
+            <!-- Right box -->
+            <div class="box" onclick="window.location.href='circles_.html'">
+                <h2 style="text-align:center;">예술이 궁금해! Digger</h2>
+                <p>예술, 흥미롭지만 어려우신가요?</br>현대미술, 난해하지만 궁금하신가요?</br></br>
+                    <span style="font-size: 17px;">Find out your interesting art curation!<br>
+                    Or you can browse art dictionary!</span> </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; ArtforEveryone_genie</p>
+    </footer>
+    
+
+     <!--<script>
+        window.addEventListener('scroll', function() {
+            const middleSection = document.querySelector('.middle-section');
+            const distanceToTop = middleSection.getBoundingClientRect().top;
+
+            if (distanceToTop <= window.innerHeight * 0.75) {
+                middleSection.classList.add('visible');
+            } else {
+                middleSection.classList.remove('visible');
+            }
+        });
+    </script>-->
+
+</body>
+</html>

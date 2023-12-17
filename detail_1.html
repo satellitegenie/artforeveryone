@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>웹 사이트 내 채팅</title>
+  <style>
+    /* CSS 스타일링 */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      background-color: #F95700;
+    }
+
+    .project-page, .chat-page {
+      width: 80%;
+      padding: 10px;
+      box-sizing:border-box;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+    .project-page {
+      flex: 1; /* 화면의 1/4 차지 */
+      overflow: auto;
+      padding: 20px;
+      box-sizing: border-box;
+      background-color: #FFFFFF;
+      text-align: center;
+    }
+    .project-page p{
+      font-size: 0.9em;
+      text-align: justify;
+    }
+    img {
+      width: 360px;
+      height: auto;
+    }
+    .chat-page {
+      flex: 3; /* 화면의 3/4 차지 */
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .chat-container {
+      width: 80%;
+      max-width: 800px;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 8px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      flex-direction: column-reverse;
+    }
+    .message {
+      background-color: #f2f2f2;
+      padding: 8px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      max-width: 70%;
+      align-self: flex-end;
+    }
+    .message .sender {
+      font-weight: bold;
+    }
+    .message .message-text {
+      margin-top: 5px;
+    }
+    .message img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-top: 5px;
+    }
+    .chat-input-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      background-color: #f9f9f9;
+    }
+    .chat-input {
+      display: flex;
+      align-items: center;
+      width: calc(100% - 120px);
+    }
+    .chat-input input[type="text"] {
+      flex: 1;
+      padding: 8px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      margin-right: 10px;
+    }
+    .chat-input input[type="file"] {
+      display: none;
+    }
+    .chat-input label.upload-button {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 4px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    .chat-input button {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 4px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="project-page">
+    <!-- 프로젝트 해시태그 페이지 -->
+    <h2>프로젝트 해시태그</h2>
+    <h4>라이스 브루잉 시스터즈 클럽, </br>
+      랩삐(lab B·강민정, 안가영, 최혜련, 협업: 제닌기)</h4>
+    <img src="./img/프로젝트.jpeg"><br>
+    <p style="line-height: 150%;">
+      랩삐는 <span style="font-weight: bold;"><강냉이 털어 국현감(From Tilling the Fields to Hitting the MMCA!)></span>라는 제목의 프로젝트를 선보인다. </br></br>
+      랩삐는 휴식과 노동이라는 인간 행위가 자동화 사회 시스템 속에서 작동되는 방식을 관찰했다. 
+      이를 토대로 <span style="font-weight: bold;">‘놀이노동(playbor)’</span>이라는 놀이로 가장된 노동의 형태를 제안한다.</br></br>
+      랩삐가 직접 옥수수를 수확해 만든 강냉이는 관람객들이 직접 참여를 통해 미션을 성공적으로 추가하면 보상으로 주어진다. </br></br>
+      전시실 내 마련된 모바일 게임존 ‘파밍파밍 아케이드’에서 관람객은 자신의 모바일 폰을 이용해 게임 속 미션을 수행해 포인트를 획득하고, 누적된 포인트로 강냉이를 교환할 수 있다.
+    </p>
+  </div>
+  <div class="chat-page">
+    <!-- 채팅 페이지 -->
+    <div class="chat-container">
+      <div class="chat-messages" id="chat-messages">
+        <!-- 채팅 메시지 부분 -->
+      </div>
+      <div class="chat-input-container">
+        <div class="chat-input">
+          <input type="file" id="file-upload" accept="image/*">
+          <label for="file-upload" class="upload-button">파일 업로드</label>
+          <input type="text" id="message-input" placeholder="메시지를 입력하세요...">
+        </div>
+        <button onclick="sendMessage()">전송</button>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    // JavaScript 기능
+    function sendMessage() {
+      const messageInput = document.getElementById('message-input');
+      const message = messageInput.value.trim();
+  
+      const fileInput = document.getElementById('file-upload');
+      const file = fileInput.files[0];
+  
+      const chatMessages = document.getElementById('chat-messages');
+  
+      if (message === '' && !file) {
+        return; // 파일이나 메시지 없으면 전송X
+      }
+  
+      const messageElement = document.createElement('div');
+      messageElement.classList.add('message');
+      messageElement.innerHTML = `
+        <span class="sender">User:</span>
+        <div class="message-text">${message}</div>
+      `;
+  
+      if (file) {
+        const imageElement = document.createElement('img');
+        imageElement.src = URL.createObjectURL(file);
+        messageElement.appendChild(imageElement);
+      }
+  
+      chatMessages.prepend(messageElement); // 역순으로 메시지 나오게
+  
+      messageInput.value = '';
+      fileInput.value = '';
+  
+      // 스크롤 방식 변경 (채팅창 역순)
+      chatMessages.style.scrollBehavior = 'smooth';
+      setTimeout(() => {
+        chatMessages.style.scrollBehavior = 'auto';
+      }, 100);
+    }
+  </script>
+</body>
+</html>

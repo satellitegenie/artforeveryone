@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Art for Everyone</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #F95700;
+            color: #333;
+            position: relative;
+            padding-top: 50px;
+            background-image: url('기본 배경 이미지.jpg');
+    background-size: cover; /* 배경->화면에 맞게 채우기 */
+    background-repeat: no-repeat; /* 배경 이미지 반복 제거 */
+    background-position: center; /* 배경 가운데 정렬 */
+    transition: background-image 0.3s ease-in-out;
+        }
+
+        /* 고정 헤더 */
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            background-color: #ffffff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items:last baseline;
+        }
+
+        .title{
+            margin-top: 10px;
+            margin-left: 10px;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+        }
+        
+
+        h1 {
+            color: #F95700;
+            font-size: 2em;
+            line-height: 120%;
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 1.25em;
+            line-height: 120%;
+            padding: 3px;
+        }
+
+        p {
+            text-align: center;
+            line-height: 150%;
+        }
+
+        nav ul {
+            list-style: none;
+            margin-top: 10px;
+            display:flex;
+            justify-content: flex-end;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #F95700;
+        }
+
+        nav ul li a:hover {
+            color: black;
+            list-style: underline;
+        }
+
+
+        /* main */
+        main {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        /* footer */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #ffffff;
+            color: #F95700;
+        }
+
+        /* 원 스타일 */
+        .circle-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            padding: 0 20px;
+        }
+
+        .circle {
+            flex: 0 0 auto;
+            height: 180px;
+            width: 180px;
+            border-radius: 50%;
+            margin: 30px;
+            cursor: pointer;
+            transition: background-color 0.5s; /* 배경 색상 전환 효과를 적용 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #fff; /* 초기에 흰색으로 설정 */
+        }
+
+        .circle-content {
+            color: #000; /* 기본 텍스트 색상 */
+        }
+
+        #add-circle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            background-color: #f9f9f9;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+
+    </style>
+</head>
+<body>
+    <header class="sticky">
+        <div class="title">
+        <h1>널 위한 문화예술</h1>
+        <h2 style="color:#F95700">Art for Everyone</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Artist</a></li>
+                <li><a href="#">Art Lover</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<main>
+
+    <section class="additional-page">
+        <div class="circle-container">
+            <!-- 초기에 설정된 원 5개 -->
+            <div class="circle" data-image="url('01.png')" data-link="detail_1.html">
+                <div class="circle-content" contentEditable="true">프로젝트 해시태그</div>
+            </div>
+            <div class="circle" data-image="url('02.png')" data-link="detail_2.html">
+                <div class="circle-content" contentEditable="true">이것 역시 지도</div>
+            </div>
+            <div class="circle" data-image="url('03.png')" data-link="detail_3.html">
+                <div class="circle-content" contentEditable="true">게임사회</div>
+            </div>
+            <div class="circle" data-image="url('04.png')" data-link="detail_4.html">
+                <div class="circle-content" contentEditable="true">럭스-시적해상도</div>
+            </div>
+            <div class="circle" data-image="url('05.png')" data-link="detail_5.html">
+                <div class="circle-content" contentEditable="true">전자적 숲</div>
+            </div>
+        </div>
+        <button id="add-circle">+</button>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; ArtforEveryone_genie</p>
+</footer>
+
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        const circleContainer = document.querySelector('.circle-container');
+        const addButton = document.getElementById('add-circle');
+
+        // 원 추가 함수
+        addButton.addEventListener('click', function () {
+            if (circleContainer.childElementCount < 15) { // 최대 15개 
+                const newCircle = document.createElement('div');
+                newCircle.classList.add('circle');
+                newCircle.style.backgroundColor = '#fff'; // 기본 흰색으로 생성
+
+                const newText = document.createElement('div');
+                newText.classList.add('circle-content');
+                newText.contentEditable = true; // 텍스트 수정 가능 기능
+                newText.textContent = 'New Text'; // 새로운 텍스트
+                newCircle.appendChild(newText);
+
+                circleContainer.appendChild(newCircle);
+
+                // 새로운 원에 마우스 호버 시 스타일 변경
+                const hoverColor = getRandomColor();
+                newCircle.dataset.defaultColor = '#fff'; // 흰색으로 다시 초기화
+
+                newCircle.addEventListener('click', function () {
+                    const text = newCircle.querySelector('.circle-content');
+                    text.focus(); // 클릭 시 텍스트 수정 가능하는 기능
+                });
+
+                newCircle.addEventListener('mouseover', function () {
+                    if (!newCircle.classList.contains('hovered')) {
+                        newCircle.classList.add('hovered');
+                        newCircle.style.backgroundColor = hoverColor; // 랜덤 색상으로 
+                        newCircle.querySelector('.circle-content').style.color = '#fff';
+                        document.body.style.backgroundImage = newCircle.dataset.image; // 호버 시 배경 이미지 변경
+                    }
+                });
+
+                newCircle.addEventListener('mouseout', function () {
+                    newCircle.classList.remove('hovered');
+                    newCircle.style.backgroundColor = '#fff'; // 흰색으로 변경
+                    newCircle.querySelector('.circle-content').style.color = '#000'; // 기본 텍스트 색상으로 변경
+                    document.body.style.backgroundImage = "url('기본 배경 이미지.jpg')"; // 호버 해제 시 기본 배경 이미지로 변경
+                });
+            }
+        });
+
+        // 초기 원에 마우스 호버 시 스타일 변경
+        document.querySelectorAll('.circle').forEach(circle => {
+            const hoverColor = getRandomColor();
+            circle.dataset.defaultColor = '#fff'; // 흰색으로 초기화
+
+            circle.addEventListener('click', function () {
+                const link = circle.dataset.link; // 해당 원의 링크 가져오기
+                    if (link) {
+                        window.location.href = link; // 링크로 이동
+                    }
+                });
+
+            circle.addEventListener('mouseover', function () {
+                if (!circle.classList.contains('hovered')) {
+                    circle.classList.add('hovered');
+                    circle.style.backgroundColor = hoverColor; // 랜덤 색상으로 변경
+                    circle.querySelector('.circle-content').style.color = '#fff';
+                    document.body.style.backgroundImage = circle.dataset.image; // 호버 시 배경 이미지 변경
+                }
+            });
+
+            circle.addEventListener('mouseout', function () {
+                circle.classList.remove('hovered');
+                circle.style.backgroundColor = '#fff'; // 흰색으로 변경
+                circle.querySelector('.circle-content').style.color = '#000'; // 기본 텍스트 색상으로 변경
+                document.body.style.backgroundImage = "url('기본 배경 이미지.jpg')"; // 호버 해제 시 기본 배경 이미지로 변경
+            });
+        });
+    });
+
+    // 랜덤 색상 생성 함수
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+</script>
+</body>
+</html>
